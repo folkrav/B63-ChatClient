@@ -7,7 +7,7 @@
 ?>
 
 <div id="contents">
-	Hello!
+	<h1>Hello!</h1>
 </div>
 
 <?php

@@ -18,7 +18,9 @@
 			
 			if (strlen($response) === 32) {
 				$_SESSION["key"] = $response;
-				echo "t'es connecté, bozo!";
+				$_SESSION["username"] = $_POST["username"];
+				header("location:index.php");
+				exit;
 			}
 		}
 
