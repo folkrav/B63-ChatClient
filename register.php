@@ -6,7 +6,7 @@
 	require_once("partial/header.php");
 ?>
 	
-<div id="registerForm">
+<div id="contents">
 	<h2>Enregistrez-vous</h1>
 	<form action="register.php" method="post">
 		<div class="login-line">

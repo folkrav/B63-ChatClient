@@ -4,7 +4,7 @@
 	require_once("action/API.php");
 
 	class LoginAction extends CommonAction {
-		public $response = "";
+		public $status = "";
 
 		public function __construct() {
 			parent::__construct(CommonAction::$VISIBILITY_PUBLIC);
@@ -23,9 +23,9 @@
 		}
 
 		private function login() {
-			$data = array();
-			$data["username"] = $_POST["username"];
-			$data["password"] = md5($_POST["password"]);
+			$data = array(
+				"username" => $_POST["username"],
+				"password" => md5($_POST["password"]));
 			
 			return callApi(API_URL, "login", $data);
 		}

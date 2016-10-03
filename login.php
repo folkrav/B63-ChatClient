@@ -6,7 +6,7 @@
 	require_once("partial/header.php");
 ?>
 
-<div id="loginForm">
+<div id="contents">
 	<h2>Se connecter</h1>
 	<form action="login.php" method="post">
 		<div class="login-line">

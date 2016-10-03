@@ -4,18 +4,17 @@
 	require_once("action/API.php");
 
 	class RegisterAction extends CommonAction {
-		public $response = "";
+		public $status = "";
 
 		public function __construct() {
 			parent::__construct(CommonAction::$VISIBILITY_PUBLIC);
 		}
 
 		protected function executeAction() {
-			
+			$response = "";	
 			if (!empty($_POST)) {
 				$response = $this->login();
 			}
-
 		}
 
 		private function register() {
