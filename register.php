@@ -7,20 +7,21 @@
 ?>
 	
 <div id="registerForm">
+	<h2>Enregistrez-vous</h1>
 	<form action="register.php" method="post">
 		<div class="login-line">
 			<div class="login-label">Matricule :</div>
 			<div class="login-input"><input type="text" name="studentID" id="studentID"></div>
 		</div>
 		<div class="login-line">
-			<div class="login-label">Mot de passe :</div>
+			<div class="login-label">Nom d'utilisateur :</div>
 			<div class="login-input"><input type="text" name="username" id="username"></div>
 		</div>
 		<div class="login-line">
 			<div class="login-label">Mot de passe :</div>
 			<div class="login-input"><input type="password" name="password" id="password"></div>
 		</div>
-		<!-- <div class="login-line">
+<!-- 		<div class="login-line">
 			<div class="login-label">Confirmer le mot de passe :</div>
 			<div class="login-input"><input type="password" name="password" id="password"></div>
 		</div> -->
