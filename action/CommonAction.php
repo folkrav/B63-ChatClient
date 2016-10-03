@@ -1,7 +1,6 @@
 <?php
 	session_start();
 	require_once("action/Constants.php");
-	require_once("action/DAO/Connection.php");
 
 
 	abstract class CommonAction {
@@ -11,7 +10,7 @@
 		private $pageVisibility;
 
 		public function __construct($pageVisibility) {
-			this->pageVisibility = $pageVisibility;
+			$this->pageVisibility = $pageVisibility;
 		}
 
 		public final function execute() {
