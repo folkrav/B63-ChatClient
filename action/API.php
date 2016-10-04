@@ -5,5 +5,5 @@
 		$data = urlencode($data);			// Encodage pour être un URL valide
 
 		// Appel au serveur et décodage de la réponse
-		return json_decode(file_get_contents($url . "/" . $service . "?data=" . $data)); 
+		return json_decode(file_get_contents($url . "/" . $service . "?data=" . $data));
     }
