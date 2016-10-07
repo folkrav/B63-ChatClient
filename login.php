@@ -21,6 +21,7 @@
 			<button type="submit">S'enregistrer</button>
 		</div>
 	</form>
+	<p>Pas de compte? <a href="register.php">Enregistrez-vous!</a></p>
 </div>
 
 <?php
