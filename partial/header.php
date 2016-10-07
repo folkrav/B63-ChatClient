@@ -12,6 +12,7 @@
 			if ($action->isLoggedIn()) {
 				?>
 				<li>Hello, <?= $action->getUsername() ?></li>
+				<li><a href="?logout=true">Se déconnecter</a></li>
 				<?php
 			}
 			else {
