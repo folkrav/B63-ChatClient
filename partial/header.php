@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/global.css">
 	<title>apps-de-cours chat client</title>
 </head>
 <body>

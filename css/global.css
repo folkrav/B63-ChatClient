@@ -1,0 +1,48 @@
+* {
+    border: 0;
+    margin: 0;
+}
+
+#contents {
+    width: 800px;
+    display: block;
+    margin: auto;
+}
+
+/***************************************************
+  Chat
+***************************************************/
+#chatContents,
+#chatEntry {width: 100%;}
+
+#chatRoom,
+#chatUserlist,
+#chatEntry {
+    margin-bottom: 10px;
+    background-color: #333;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 0.5em;
+    color: #fff;
+}
+
+#chatRoom,
+#chatUserlist {
+    height: 500px;
+    display: table-cell;
+}
+
+#chatRoom {min-width: 600px;}
+#chatUserlist {width: 100%;}
+
+#chatEntry {
+    clear: both;
+    box-sizing: border-box;
+}
+
+#chatEntry textarea {
+    font-family: inherit;
+    font-size: inherit;
+    display: block;
+    margin: auto;
+}

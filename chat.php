@@ -7,12 +7,18 @@
 ?>
 
 <div id="contents">
-	<div id="chatControls"></div>
     <div id="chatContents">
-        <div id="chatRoom"></div>
-        <div id="chatUserlist"></div>
+        <div id="chatRoom">test</div>
+        <div id="chatUserlist">
+            <h4>Utilisateurs connectés</h4>
+            <ul>
+                <?php
+                // list users
+                ?>
+            </ul>
+        </div>
     </div>
-    <div id="chatEntry"></div>
+    <div id="chatEntry"><textarea rows="3" cols="95" placeholder="Entrez un message..."></textarea></div>
 </div>
 
 <?php
