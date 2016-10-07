@@ -18,7 +18,7 @@
 			<div class="login-input"><input type="password" name="password" id="password"></div>
 		</div>
 		<div class="login-line">
-			<button type="submit">S'enregistrer</button>
+			<button type="submit">Se connecter</button>
 		</div>
 	</form>
 	<p>Pas de compte? <a href="register.php">Enregistrez-vous!</a></p>
