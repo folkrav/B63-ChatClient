@@ -9,9 +9,9 @@
 			<li><a href="index.php">Index</a></li>
 			<li><a href="chat.php">Chat</a></li>
 			<?php
-			if (!isset($_SESSION["id"])) {
+			if ($action->isLoggedIn()) {
 				?>
-				<li>Hello, <?= $_SESSION["username"] ?></li>
+				<li>Hello, <?= $action->getUsername() ?></li>
 				<?php
 			}
 			else {

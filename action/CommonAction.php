@@ -4,7 +4,7 @@
 
 
 	abstract class CommonAction {
-		public static $VISIBILITY_PUBLIC = 0;		
+		public static $VISIBILITY_PUBLIC = 0;
 		public static $VISIBILITY_REGISTERED = 1;
 
 		private $pageVisibility;
@@ -19,7 +19,7 @@
 				session_destroy();
 				session_start();
 			}
-			
+
 			if (empty($_SESSION["visibility"])) {
 				$_SESSION["visibility"] = CommonAction::$VISIBILITY_PUBLIC;
 			}
@@ -30,6 +30,19 @@
 			}
 
 			$this->executeAction();
+		}
+
+		public function isLoggedIn() {
+			return $_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC;
+		}
+
+		public function getUsername() {
+			$username = "";
+
+			if ($this->isLoggedIn()) {
+				$username = $_SESSION["username"];
+			}
+			return $username;
 		}
 
 		protected abstract function executeAction();

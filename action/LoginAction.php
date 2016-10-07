@@ -15,10 +15,12 @@
 			if (!empty($_POST)) {
 				$response = $this->login();
 			}
-			
+
 			if (strlen($response) === 32) {
 				$_SESSION["key"] = $response;
 				$_SESSION["username"] = $_POST["username"];
+				$_SESSION["visibility"] = CommonAction::$VISIBILITY_REGISTERED;
+
 				header("location:index.php");
 				exit;
 			}
@@ -28,7 +30,7 @@
 			$data = array(
 				"username" => $_POST["username"],
 				"password" => md5($_POST["password"]));
-			
+
 			return callApi(API_URL, "login", $data);
 		}
 	}
