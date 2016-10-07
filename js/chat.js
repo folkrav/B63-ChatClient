@@ -3,28 +3,36 @@ window.onload = function () {
 }
 
 function getMessages() {
-
-    setTimeout(getUserlist, 1000);
+    $.ajax({
+		url : 'get-messages.php'
+    }).done(function (r) {
+        r = JSON.parse(r);
+        showMessages(r);
+        setTimeout(getUserlist, 1000);
+    });
 }
 
 function getUserlist(key) {
     $.ajax({
 		url : 'get-users.php'
     }).done(function (r) {
-
         r = JSON.parse(r);
         showUserlist(r);
         setTimeout(getMessages, 1000);
     });
 }
 
-function showUserlist(userList) {
-    var list = document.createElement("ul");
-    console.log(userList);
+function showMessages(messages) {
+    console.log(messages);
+}
 
-    for (var i = 0; i < userList.length; i++) {
+function showUserlist(users) {
+    var list = document.createElement("ul");
+    console.log(users);
+
+    for (var i = 0; i < users.length; i++) {
         var entry = document.createElement('li');
-        entry.appendChild(document.createTextNode(userList[i]));
+        entry.appendChild(document.createTextNode(users[i]));
         list.appendChild(entry);
     }
 

@@ -8,11 +8,7 @@
 <script src="js/chat.js"></script>
 <div id="contents">
     <div id="chatContents">
-        <div id="chatRoom">
-            <?php
-            // show messages
-            ?>
-        </div>
+        <div id="chatRoom"></div>
         <div id="chatUserlist"></div>
     </div>
     <div id="chatEntry">
