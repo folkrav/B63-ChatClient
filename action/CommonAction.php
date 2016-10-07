@@ -27,6 +27,18 @@
 				}
 			}
 
+			if (!empty($_GET["unregister"])) {
+				$data = array(
+					"key" => $_SESSION["key"]
+				);
+				$response = callApi(API_URL, "unregister", $data);
+				if ($response === "SUCCESS") {
+					session_unset();
+					session_destroy();
+					session_start();
+				}
+			}
+
 			if (empty($_SESSION["visibility"])) {
 				$_SESSION["visibility"] = CommonAction::$VISIBILITY_PUBLIC;
 			}

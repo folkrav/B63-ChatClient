@@ -16,11 +16,13 @@
 				?>
 				<li>Hello, <?= $action->getUsername() ?></li>
 				<li><a href="?logout=true">Se déconnecter</a></li>
+				<li><a href="?unregister=true">Désinscription</a></li>
 				<?php
 			}
 			else {
 				?>
 				<li><a href="login.php">Se connecter</a></li>
+				<li><a href="register.php">S'enregistrer</a></li>
 				<?php
 			}?>
 		</ul>
