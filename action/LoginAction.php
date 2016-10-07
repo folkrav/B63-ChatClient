@@ -21,7 +21,7 @@
 				$_SESSION["username"] = $_POST["username"];
 				$_SESSION["visibility"] = CommonAction::$VISIBILITY_REGISTERED;
 
-				header("location:index.php");
+				header("location:chat.php");
 				exit;
 			}
 		}
