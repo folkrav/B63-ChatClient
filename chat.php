@@ -7,7 +7,12 @@
 ?>
 
 <div id="contents">
-	<h1>Hello!</h1>
+	<div id="chatControls"></div>
+    <div id="chatContents">
+        <div id="chatRoom"></div>
+        <div id="chatUserlist"></div>
+    </div>
+    <div id="chatEntry"></div>
 </div>
 
 <?php

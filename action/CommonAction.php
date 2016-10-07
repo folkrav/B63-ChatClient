@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require_once("action/Constants.php");
+	require_once("action/API.php");
 
 
 	abstract class CommonAction {
@@ -15,9 +16,15 @@
 
 		public final function execute() {
 			if (!empty($_GET["logout"])) {
-				session_unset();
-				session_destroy();
-				session_start();
+				$data = array(
+					"key" => $_SESSION["key"]
+				);
+				$response = callApi(API_URL, "logout", $data);
+				if ($response !== "EMPTY_PARAMETER") {
+					session_unset();
+					session_destroy();
+					session_start();
+				}
 			}
 
 			if (empty($_SESSION["visibility"])) {

@@ -29,7 +29,8 @@
 		private function login() {
 			$data = array(
 				"username" => $_POST["username"],
-				"password" => md5($_POST["password"]));
+				"password" => md5($_POST["password"])
+			);
 
 			return callApi(API_URL, "login", $data);
 		}
