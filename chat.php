@@ -12,8 +12,10 @@
         <div id="chatUserlist"></div>
     </div>
     <div id="chatEntry">
-        <textarea rows="5" cols="106" placeholder="Entrez un message..."></textarea>
-        <input type="button" value="Envoyer" onclick="sendMessage()">
+        <form method="post">
+            <textarea rows="5" cols="106" placeholder="Entrez un message..."></textarea>
+            <input type="submit" value="Envoyer">
+        </form>
     </div>
 </div>
 
