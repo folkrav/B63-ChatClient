@@ -4,7 +4,7 @@
 }
 
 #contents {
-    width: 800px;
+    width: 900px;
     display: block;
     margin: auto;
 }
@@ -32,7 +32,7 @@
     display: table-cell;
 }
 
-#chatRoom {min-width: 600px;}
+#chatRoom {min-width: 700px;}
 #chatUserlist {width: 100%;}
 
 #chatEntry {
@@ -45,4 +45,9 @@
     font-size: inherit;
     display: block;
     margin: auto;
+}
+
+#chatEntry input {
+    display: block;
+    margin: 10px auto 0 auto;
 }

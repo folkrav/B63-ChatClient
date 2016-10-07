@@ -5,20 +5,20 @@
 
 	require_once("partial/header.php");
 ?>
-
+<script src="js/chat.js"></script>
 <div id="contents">
     <div id="chatContents">
-        <div id="chatRoom">test</div>
-        <div id="chatUserlist">
-            <h4>Utilisateurs connectés</h4>
-            <ul>
-                <?php
-                // list users
-                ?>
-            </ul>
+        <div id="chatRoom">
+            <?php
+            // show messages
+            ?>
         </div>
+        <div id="chatUserlist"></div>
     </div>
-    <div id="chatEntry"><textarea rows="3" cols="95" placeholder="Entrez un message..."></textarea></div>
+    <div id="chatEntry">
+        <textarea rows="5" cols="106" placeholder="Entrez un message..."></textarea>
+        <input type="button" value="Envoyer" onclick="sendMessage()">
+    </div>
 </div>
 
 <?php
