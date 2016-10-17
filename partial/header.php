@@ -14,7 +14,7 @@
 			<?php
 			if ($action->isLoggedIn()) {
 				?>
-				<li>Hello, <?= $action->getUsername() ?></li>
+				<li id="myUsername">Hello, <?= $action->getUsername() ?></li>
 				<li><a href="?logout=true">Se déconnecter</a></li>
 				<li><a href="?unregister=true">Désinscription</a></li>
 				<?php

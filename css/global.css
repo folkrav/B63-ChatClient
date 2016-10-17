@@ -51,3 +51,7 @@
     display: block;
     margin: 10px auto 0 auto;
 }
+
+.chatName {
+    color: #f44;
+}

@@ -12,8 +12,9 @@
         <div id="chatUserlist"></div>
     </div>
     <div id="chatEntry">
-        <form method="post">
-            <textarea rows="5" cols="106" placeholder="Entrez un message..."></textarea>
+        <form id="chatForm" method="post">
+            <textarea rows="5" cols="106" placeholder="Entrez un message..." name="chatMessage"></textarea>
+            <input type="hidden" name="username" value="<?= $action->getUsername() ?>">
             <input type="submit" value="Envoyer">
         </form>
     </div>
