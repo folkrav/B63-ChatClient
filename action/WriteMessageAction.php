@@ -9,12 +9,10 @@
 		}
 
 		public function executeAction() {
-			if (!empty($_POST["chatMessage"])) {
-				$data = array(
-					'key' => $_SESSION["key"],
-					'messages' => $_POST["chatMessage"]
-				);
-				$this->response = callApi(API_URL, "write-messages", $data);
-			}
+			$data = array(
+				'key' => $_SESSION["key"],
+				'message' => $_POST["chatMessage"]
+			);
+			$this->response = callApi(API_URL, "write-message", $data);
 		}
 	}

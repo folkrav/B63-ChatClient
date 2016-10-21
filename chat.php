@@ -13,9 +13,7 @@
     </div>
     <div id="chatEntry">
         <form id="chatForm" method="post">
-            <textarea rows="5" cols="106" placeholder="Entrez un message..." name="chatMessage"></textarea>
-            <input type="hidden" name="username" value="<?= $action->getUsername() ?>">
-            <input type="submit" value="Envoyer">
+            <textarea rows="5" cols="106" placeholder="Entrez un message..." name="chatMessage" id="chatMessage"></textarea>
         </form>
     </div>
 </div>
