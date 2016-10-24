@@ -24,6 +24,22 @@
 				header("location:chat");
 				exit;
 			}
+			elseif ($response == "USER_IS_BANNED") {
+				$this->status = "Vous êtes bannis pour une durée de 1 minute.";
+			}
+			elseif ($response == "INVALID_USERNAME_PASSWORD") {
+				$this->status = "Nom d'utilisateur ou mot de passe invalide.";
+			}
+
+			if (isset($_GET["login-error"])) {
+				$this->status = "Il faut être connecté pour accéder au chat!";
+			}
+			elseif (isset($_GET["deleted"])) {
+				$this->status = "Votre compte a été supprimé.";
+			}
+			elseif (isset($_GET["registered"])) {
+				$this->status = "Compte créé avec succès!";
+			}
 		}
 
 		private function login() {

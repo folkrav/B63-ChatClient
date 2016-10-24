@@ -61,6 +61,7 @@ function showMessages(messages) {
 function addMessageLine(message) {
     // Create elements
     var line = document.createElement("p");
+    line.className = "messageLine";
     var name = document.createElement("span");
     name.className = "chatName";
     if (message["prive"] === true) {
@@ -75,6 +76,7 @@ function addMessageLine(message) {
     line.appendChild(messageText);
 
     $("#chatRoom").append(line);
+    $("#chatRoom").scrollTop($("chatRoom").height());
 }
 
 function showUserlist(users) {

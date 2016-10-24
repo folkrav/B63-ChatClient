@@ -36,6 +36,8 @@
 					session_unset();
 					session_destroy();
 					session_start();
+					header("location:login?deleted=true");
+					exit;
 				}
 			}
 

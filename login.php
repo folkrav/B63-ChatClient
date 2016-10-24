@@ -7,21 +7,31 @@
 ?>
 
 <div id="contents">
-	<h2>Se connecter</h1>
+	<h2>Se connecter</h2>
+	<?php
+	if (!empty($action->status)) {
+		?>
+		<div class="error">
+			<h3>Message</h3>
+			<p><?= $action->status ?></p>
+		</div>
+		<?php
+	}
+	?>
 	<form action="login.php" method="post">
-		<div class="login-line">
-			<div class="login-label">Nom d'utilisateur :</div>
-			<div class="login-input"><input type="text" name="username" id="username"></div>
+		<div class="form-line">
+			<div class="form-label">Nom d'utilisateur :</div>
+			<div class="form-input"><input type="text" name="username" id="username"></div>
 		</div>
-		<div class="login-line">
-			<div class="login-label">Mot de passe :</div>
-			<div class="login-input"><input type="password" name="password" id="password"></div>
+		<div class="form-line">
+			<div class="form-label">Mot de passe :</div>
+			<div class="form-input"><input type="password" name="password" id="password"></div>
 		</div>
-		<div class="login-line">
+		<div class="form-line">
 			<button type="submit">Se connecter</button>
 		</div>
 	</form>
-	<p>Pas de compte? <a href="register.php">Enregistrez-vous!</a></p>
+	<p>Pas de compte? <a href="register">Enregistrez-vous!</a></p>
 </div>
 
 <?php
