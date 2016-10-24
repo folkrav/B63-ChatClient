@@ -2,7 +2,6 @@ window.onload = function () {
     $("#chatMessage").keyup(function(e) {
         if((e.keyCode || e.which) == 13) { //Enter keycode
             sendMessage();
-            $.post("chat.php", $("#chatForm").serialize());
         }
     });
 
@@ -13,11 +12,14 @@ function sendMessage() {
     var text = document.getElementById("chatMessage").value;
     if (text.length > 0) {
         $.ajax({
+            type : 'POST',
             url : 'write-message.php',
+            data : {
+                message : text
+            }
         }).done(function (r) {
             r = JSON.parse(r);
-            console.log(r);
-            if (r != "EMPTY_PARAMETER") {
+            if (r !== "EMPTY_PARAMETER") {
                 var messageContents = [];
                 messageContents["nomUsager"] = $("#myUsername").text();
                 messageContents["message"] = text;
@@ -52,7 +54,6 @@ function getUserlist(key) {
 
 function showMessages(messages) {
     for (var i = messages.length - 1; i >= 0; i--) {
-        console.log(messages[i]["message"]);
         addMessageLine(messages[i]);
     }
 }

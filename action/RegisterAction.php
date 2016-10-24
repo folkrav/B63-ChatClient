@@ -13,11 +13,11 @@
 		protected function executeAction() {
 			if (!empty($_POST)) {
 				$status = $this->register();
-			}
 
-			if ($status === "SUCCESS") {
-				header("location:login.php?registered=true");
-				exit;
+				if ($status === "SUCCESS") {
+					header("location:login?registered=true");
+					exit;
+				}
 			}
 		}
 

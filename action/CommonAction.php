@@ -44,7 +44,7 @@
 			}
 
 			if ($_SESSION["visibility"] < $this->pageVisibility) {
-				header("location:login.php?login-error=true");
+				header("location:login?login-error=true");
 				exit;
 			}
 

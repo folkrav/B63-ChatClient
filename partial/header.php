@@ -9,8 +9,7 @@
 <body>
 	<nav>
 		<ul>
-			<li><a href="index.php">Index</a></li>
-			<li><a href="chat.php">Chat</a></li>
+			<li><a href="chat">Chat</a></li>
 			<?php
 			if ($action->isLoggedIn()) {
 				?>
@@ -21,8 +20,8 @@
 			}
 			else {
 				?>
-				<li><a href="login.php">Se connecter</a></li>
-				<li><a href="register.php">S'enregistrer</a></li>
+				<li><a href="login">Se connecter</a></li>
+				<li><a href="register">S'enregistrer</a></li>
 				<?php
 			}?>
 		</ul>
