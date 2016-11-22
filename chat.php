@@ -13,7 +13,7 @@
     </div>
     <div id="chatEntry">
         <form id="chatForm" method="post">
-            <textarea rows="5" cols="106" placeholder="Entrez un message..." name="chatMessage" id="chatMessage"></textarea>
+            <textarea placeholder="Entrez un message..." name="chatMessage" id="chatMessage"></textarea>
         </form>
     </div>
 </div>
