@@ -61,7 +61,8 @@ form {
 .form-input {
     width:240px;
 }
-.form-input input {
+.form-input input,
+.form-input select {
     width: 100%;
 }
 .form-line {margin: 5px 0; height: 2em;}

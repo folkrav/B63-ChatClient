@@ -5,7 +5,7 @@
 
 	require_once("partial/header.php");
 ?>
-
+<script src="js/login.js"></script>
 <div id="contents">
 	<h2>Se connecter</h2>
 	<?php
@@ -26,6 +26,16 @@
 		<div class="form-line">
 			<div class="form-label">Mot de passe :</div>
 			<div class="form-input"><input type="password" name="password" id="password"></div>
+		</div>
+		<div class="form-line">
+			<div class="form-label">Style :</div>
+			<div class="form-input">
+				<select id="styleDropdown">
+					<option value="style1">Style1</option>
+					<option value="style2">Style2</option>
+					<option value="style3">Style3</option>
+				</select>
+			</div>
 		</div>
 		<div class="form-line">
 			<button type="submit">Se connecter</button>

@@ -50,6 +50,13 @@
 				exit;
 			}
 
+			if (empty($_SESSION["style"])) {
+				$_SESSION["style"] = "style1";
+			}
+			if (!empty($_GET["style"])) {
+				$_SESSION["style"] = $_GET["style"];
+			}
+
 			$this->executeAction();
 		}
 
@@ -64,6 +71,10 @@
 				$username = $_SESSION["username"];
 			}
 			return $username;
+		}
+
+		public function getStyle() {
+			return $_SESSION["style"];
 		}
 
 		protected abstract function executeAction();

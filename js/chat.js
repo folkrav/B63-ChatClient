@@ -27,7 +27,7 @@ function sendMessage() {
                 addMessageLine(messageContents);
             }
         });
-        
+
     }
     $("#chatMessage").val("");
 }
@@ -71,7 +71,7 @@ function addMessageLine(message) {
     // Text
     name.appendChild(document.createTextNode(message["nomUsager"] + " : "));
     var messageText = document.createTextNode(message["message"]);
-    
+
     line.appendChild(name);
     line.appendChild(messageText);
 
@@ -90,4 +90,3 @@ function showUserlist(users) {
 
     $("#chatUserlist").empty().append(list);
 }
-
