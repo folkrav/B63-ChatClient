@@ -10,13 +10,13 @@
 <body>
 	<nav>
 		<ul>
-			<li><a href="chat">Chat</a></li>
+			<a href="chat"><li>Chat</li></a>
 			<?php
 			if ($action->isLoggedIn()) {
 				?>
 				<li>Hello, <span id="myUsername"><?= $action->getUsername() ?></span></li>
-				<li><a href="?logout=true">Se déconnecter</a></li>
-				<li><a href="?unregister=true">Désinscription</a></li>
+				<a href="?logout=true"><li>Se déconnecter</li></a>
+				<a href="?unregister=true"><li>Désinscription</li></a>
 				<?php
 			}
 			else {

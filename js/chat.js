@@ -1,4 +1,4 @@
-window.onload = function () {
+$(window).on('load', function () {
     $("#chatMessage").keyup(function(e) {
         if((e.keyCode || e.which) == 13) { //Enter keycode
             sendMessage();
@@ -6,7 +6,7 @@ window.onload = function () {
     });
 
     setTimeout(getMessages, 1000);
-}
+});
 
 function sendMessage() {
     var text = document.getElementById("chatMessage").value;

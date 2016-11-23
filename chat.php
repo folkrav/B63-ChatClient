@@ -17,6 +17,11 @@
         </form>
     </div>
 </div>
+<div id="styleContents">
+    <div id="styleCanvas">
+
+    </div>
+</div>
 
 <?php
 	require_once("partial/footer.php");
