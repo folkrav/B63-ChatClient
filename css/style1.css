@@ -187,3 +187,12 @@ nav ul li {
     background-image: url("../images/style1/sprites/ship.png");
     background-size: contain;
 }
+
+.bullet {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background-color: #fff;
+    border: 1px dotted #ff0;
+    border-radius: 1px;
+}
