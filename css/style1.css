@@ -180,12 +180,33 @@ nav ul li {
     height: 100%;
 }
 
-.ship {
+.ship,
+.enemy {
     position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.ship {
+    background-image: url("../images/style1/sprites/ship.png");
     width: 36px;
     height: 36px;
-    background-image: url("../images/style1/sprites/ship.png");
-    background-size: contain;
+}
+.enemy {
+    background-image: url("../images/style1/sprites/enemy.png");
+    width: 36px;
+    height: 36px;
+}
+
+.hp-bar {
+    position: absolute;
+    top: -5px;
+    right: 0;
+    left: 0;
+    width: 20px;
+    height: 1px;
+    background-color: #f00;
+    margin: 0 auto;
 }
 
 .bullet {
