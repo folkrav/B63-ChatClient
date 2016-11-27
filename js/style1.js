@@ -61,7 +61,7 @@ function manageControls() {
             }
         }
         if (rightPushed) {
-            if (ship.x < $(document).width() - ship.radius * 2) {
+            if (ship.x < ctx.width() - ship.radius * 2) {
                 ship.x += ship.speed;
             }
         }
@@ -89,7 +89,7 @@ function Ship(type) {
     ctx.append(this.div);
 
     this.radius = this.div.width() / 2;
-    this.x = $(document).width() / 2 - this.radius;
+    this.x = ctx.width() / 2 - this.radius;
     this.y = $(window).height() - this.radius;
     this.speed = 10;
     this.attackrate = 15;
@@ -148,7 +148,7 @@ function Enemy() {
     this.alive = true;
     this.halfwidth = this.div.width() / 2;
     this.halfheight = this.div.height() / 2;
-    this.x = Math.random() * ($(document).width() - this.halfwidth);
+    this.x = Math.random() * (ctx.width() - this.halfwidth);
     this.y = -50;
     this.speed = Math.random() * 3 + 2;
     this.hp = ENEMY_MAX_HP;

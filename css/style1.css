@@ -183,8 +183,9 @@ nav ul li {
 #styleCanvas {
     position: relative;
     top: 0;
-    width: 100%;
+    width: 800px;
     height: 100%;
+    margin: 0 auto;
 }
 
 .ship,
@@ -251,6 +252,6 @@ nav ul li {
     font-size: 16px;
     color: white;
     bottom: 6px;
-    left: 6px;
+    left: -65px;
     background-color: #
 }
