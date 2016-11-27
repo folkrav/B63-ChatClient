@@ -148,7 +148,7 @@ function Enemy() {
     this.alive = true;
     this.halfwidth = this.div.width() / 2;
     this.halfheight = this.div.height() / 2;
-    this.x = Math.random() * (ctx.width() - this.halfwidth);
+    this.x = Math.random() * (ctx.width() - this.halfwidth * 2) + this.halfwidth;
     this.y = -50;
     this.speed = Math.random() * 3 + 2;
     this.hp = ENEMY_MAX_HP;
