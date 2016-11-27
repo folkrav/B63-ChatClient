@@ -3,41 +3,62 @@ var ctx = null,
     rightPushed = false,
     leftPushed = false,
     ctrlPushed = false,
+    inGame = false;
     ship = null,
     enemies = [],
     ENEMY_MAX_HP = 5,
     SHIP_MAX_HP = 100,
-    HP_BAR_WIDTH = 30;
+    HP_BAR_WIDTH = 30,
+    projectiles = [];
 
 $(window).on('load', function () {
     ctx = $("#styleCanvas");
-    ship = new Ship();
+    startGame();
     background = new Background();
-
     tick();
 });
 
+function startGame() {
+    ship = new Ship();
+    inGame = true;
+}
+
 function tick() {
-    movement();
-    ship.tick();
-    if (Math.random() < 0.005) {
-        enemies.push(new Enemy());
+    manageControls();
+    if (inGame) {
+        ship.tick();
+        if (Math.random() < 0.005) {
+            enemies.push(new Enemy());
+        }
+        enemyMovement();
+        for (var i = projectiles.length - 1; i >= 0; i--) {
+            if (!projectiles[i].tick()) {
+                projectiles.splice(i, 1);
+                i--;
+            }
+        }
     }
-    enemyMovement();
+
     background.tick();
     window.requestAnimationFrame(tick);
 }
 
-function movement() {
-    if (leftPushed) {
-        if (ship.x >= ship.radius * 2) {
-            ship.x -= ship.speed;
-            $('body').css('background-position', '0 ' + background.x + 'px');
+function manageControls() {
+    if (inGame) {
+        if (leftPushed) {
+            if (ship.x >= ship.radius * 2) {
+                ship.x -= ship.speed;
+                $('body').css('background-position', '0 ' + background.x + 'px');
+            }
         }
-    }
-    if (rightPushed) {
-        if (ship.x < $(document).width() - ship.radius * 2) {
-            ship.x += ship.speed;
+        if (rightPushed) {
+            if (ship.x < $(document).width() - ship.radius * 2) {
+                ship.x += ship.speed;
+            }
+        }
+    } else {
+        if (leftPushed || rightPushed) {
+            startGame();
         }
     }
 }
@@ -64,16 +85,14 @@ function Ship(type) {
     this.attackrate = 15;
     this.cooldown = 0;
     this.hp = SHIP_MAX_HP;
-
-    this.projectiles = [];
 }
 
 Ship.prototype.tick = function() {
     $(".ship").css({top: this.y - this.radius, left: this.x - this.radius});
     this.attack();
-    for (var i = this.projectiles.length - 1; i >= 0; i--) {
-        if (!this.projectiles[i].tick()) {
-            this.projectiles.splice(i, 1);
+    for (var i = projectiles.length - 1; i >= 0; i--) {
+        if (!projectiles[i].tick()) {
+            projectiles.splice(i, 1);
             i--;
         }
     }
@@ -90,8 +109,8 @@ Ship.prototype.tick = function() {
 Ship.prototype.attack = function() {
     if (ctrlPushed) {
         if (this.cooldown % this.attackrate === 0) {
-            var temp = new Projectile(this.x - 1, this.y - this.radius);
-            this.projectiles.push(temp);
+            var temp = new Projectile(this.x - 1, this.y - this.radius, false);
+            projectiles.push(temp);
             this.cooldown = 1;
         } else {
             this.cooldown++;
@@ -114,11 +133,14 @@ function Enemy() {
     this.speed = Math.random() * 3 + 2;
     this.hp = ENEMY_MAX_HP;
     this.collisiondamage = 10;
+    this.attackrate = 25;
+    this.cooldown = 0;
 }
 
 Enemy.prototype.tick = function() {
     this.y += this.speed;
     this.div.css({top: this.y - this.halfheight, left: this.x - this.halfwidth});
+    this.attack();
 
     if (this.hp < ENEMY_MAX_HP) {
         if (this.div.children().length == 0) {
@@ -143,36 +165,67 @@ Enemy.prototype.tick = function() {
     return this.alive;
 };
 
-function Projectile(x, y) {
+Enemy.prototype.attack = function() {
+    if (true) {
+        if (this.cooldown % this.attackrate === 0) {
+            if (Math.random() < 0.025) {
+                var temp = new Projectile(this.x + 1, this.y + this.halfwidth, true);
+                projectiles.push(temp);
+                this.cooldown = 1;
+            }
+        } else {
+            this.cooldown++;
+        }
+    } else {
+        this.cooldown = 0;
+    }
+};
+
+function Projectile(x, y, isEnemy) {
     this.div = $("<div>", {"class": "bullet"}).css({top: this.y, left: this.x});
     ctx.append(this.div);
 
     this.x = x;
     this.y = y;
     this.alive = true;
-    this.speed = 15;
+    this.speed = isEnemy ? -5 : 5;
     this.damage = 1;
+    this.isEnemy = isEnemy;
 }
 
 Projectile.prototype.tick = function() {
     if (this.alive) {
         this.y -= this.speed;
         this.div.css({left: this.x, top: this.y});
-        for (var i = enemies.length - 1; i >= 0; i--) {
-            var enemyx = enemies[i].x - enemies[i].halfwidth,
-                enemyxx = enemies[i].x + enemies[i].halfwidth,
-                enemyy = enemies[i].y - enemies[i].halfheight,
-                enemyyy = enemies[i].y + enemies[i].halfheight;
+        if (this.isEnemy) {
+            var enemyx = ship.x - ship.radius,
+                enemyxx = ship.x + ship.radius,
+                enemyy = ship.y - ship.radius,
+                enemyyy = ship.y + ship.radius;
             if (this.x < enemyxx && this.x > enemyx &&
                 this.y < enemyyy && this.y > enemyy) {
-                enemies[i].hp -= this.damage;
+                ship.hp -= this.damage;
                 this.alive = false;
                 this.div.remove();
-                enemies[i].div.fadeOut(100).fadeIn(100);
+                ship.div.fadeOut(100).fadeIn(100);
+            }
+        } else {
+            for (var i = enemies.length - 1; i >= 0; i--) {
+                var enemyx = enemies[i].x - enemies[i].halfwidth,
+                    enemyxx = enemies[i].x + enemies[i].halfwidth,
+                    enemyy = enemies[i].y - enemies[i].halfheight,
+                    enemyyy = enemies[i].y + enemies[i].halfheight;
+                if (this.x < enemyxx && this.x > enemyx &&
+                    this.y < enemyyy && this.y > enemyy) {
+                    enemies[i].hp -= this.damage;
+                    this.alive = false;
+                    this.div.remove();
+                    enemies[i].div.fadeOut(100).fadeIn(100);
+                }
             }
         }
     }
-    if (this.y <= 0) {
+    if (this.y <= 0 || this.y >= ship.y) {
         this.alive = false;
         this.div.remove();
     }
