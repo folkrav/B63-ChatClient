@@ -1,32 +1,39 @@
 var ctx = null,
+    scoreSpan = null,
+    score = 0,
+
     background = null,
     rightPushed = false,
     leftPushed = false,
     ctrlPushed = false,
     inGame = false;
+
     ship = null,
     enemies = [],
-    ENEMY_MAX_HP = 5,
-    SHIP_MAX_HP = 100,
-    HP_BAR_WIDTH = 30,
-    projectiles = [];
+    projectiles = [],
+
+    ENEMY_MAX_HP = 8,
+    SHIP_MAX_HP = 50,
+    HP_BAR_WIDTH = 30;
 
 $(window).on('load', function () {
-    ctx = $("#styleCanvas");
-    startGame();
     background = new Background();
+    startGame();
     tick();
 });
 
 function startGame() {
+    ctx = $("#styleCanvas");
+    scoreDiv = $("<div>", {"id": "score"}).text("Score : " + score);
+    ctx.append(scoreDiv);
     ship = new Ship();
     inGame = true;
+    score = 0;
 }
 
 function tick() {
     manageControls();
     if (inGame) {
-        ship.tick();
         if (Math.random() < 0.005) {
             enemies.push(new Enemy());
         }
@@ -37,9 +44,11 @@ function tick() {
                 i--;
             }
         }
+        ship.tick();
+        scoreDiv.text("Score : " + score)
+        background.tick();
     }
 
-    background.tick();
     window.requestAnimationFrame(tick);
 }
 
@@ -57,7 +66,8 @@ function manageControls() {
             }
         }
     } else {
-        if (leftPushed || rightPushed) {
+        if (ctrlPushed) {
+            ctx.empty();
             startGame();
         }
     }
@@ -104,6 +114,16 @@ Ship.prototype.tick = function() {
         this.div.children(".hp-background").children(".hp-bar").width(HP_BAR_WIDTH * this.hp / SHIP_MAX_HP);
     }
 
+    if (this.hp <= 0) {
+        inGame = false;
+        ship = null;
+        enemies = [];
+        projectiles = [];
+        ctx.empty();
+        gameOver = $("<p>", {"id": "gameOver"}).append("You died with a score of " + score + ". Press Fire to restart!");
+        ctx.append(gameOver);
+    }
+
 };
 
 Ship.prototype.attack = function() {
@@ -133,7 +153,7 @@ function Enemy() {
     this.speed = Math.random() * 3 + 2;
     this.hp = ENEMY_MAX_HP;
     this.collisiondamage = 10;
-    this.attackrate = 25;
+    this.attackrate = 50;
     this.cooldown = 0;
 }
 
@@ -160,6 +180,7 @@ Enemy.prototype.tick = function() {
     if (this.hp <= 0) {
         this.div.remove();
         this.alive = false;
+        score++;
     }
 
     return this.alive;
@@ -189,7 +210,7 @@ function Projectile(x, y, isEnemy) {
     this.y = y;
     this.alive = true;
     this.speed = isEnemy ? -5 : 5;
-    this.damage = 1;
+    this.damage = Math.random() * 4 + 1;
     this.isEnemy = isEnemy;
 }
 

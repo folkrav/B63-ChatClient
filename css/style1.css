@@ -18,6 +18,16 @@ body {
     background: url('../images/style1/background.jpg');
 }
 
+#contents,
+nav {
+    opacity: 0.4;
+}
+
+#contents:hover,
+nav:hover {
+    opacity: 0.95;
+}
+
 #contents {
     z-index: 100;
     position: inherit;
@@ -25,7 +35,6 @@ body {
     display: block;
     margin: 0 auto;
     text-align: center;
-    opacity: 0.4;
     -webkit-transition: opacity .15s ease-in;
     -moz-transition: opacity .15s ease-in;
     -ms-transition: opacity .15s ease-in;
@@ -33,11 +42,8 @@ body {
     transition: opacity .15s ease-in;
 }
 
-#contents:hover {
-    opacity: 0.95;
-}
-
 nav {
+    z-index: 100;
     display: block;
     margin: 10px auto;
     width: 900px;
@@ -167,6 +173,7 @@ nav ul li {
 
 /* Game */
 #styleContents {
+    z-index: -100;
     position: absolute;
     top: 0;
     width: 100%;
@@ -225,4 +232,25 @@ nav ul li {
     background-color: #ff0;
     border: 1px dotted #0ff;
     border-radius: 1px;
+}
+
+#gameOver {
+    position: absolute;
+    font-size: 30px;
+    color: red;
+    top: 730px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    width: 400px;
+}
+
+#score {
+    position: absolute;
+    font-size: 16px;
+    color: white;
+    bottom: 6px;
+    left: 6px;
+    background-color: #
 }
