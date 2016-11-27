@@ -10,7 +10,7 @@
 <body>
 	<nav>
 		<ul>
-			<a href="chat"><li>Chat</li></a>
+			<li><a href="chat">Chat</a></li>
 			<?php
 			if ($action->isLoggedIn()) {
 				?>
