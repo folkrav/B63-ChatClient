@@ -7,7 +7,7 @@ var ctx = null,
     enemies = [],
     ENEMY_MAX_HP = 5,
     SHIP_MAX_HP = 100,
-    HP_BAR_WIDTH = 20;
+    HP_BAR_WIDTH = 30;
 
 $(window).on('load', function () {
     ctx = $("#styleCanvas");
@@ -79,9 +79,10 @@ Ship.prototype.tick = function() {
     }
     if (this.hp < SHIP_MAX_HP) {
         if (this.div.children().length == 0) {
-            this.div.append($("<div>", {"class": "hp-bar"}));
+            this.div.append($("<div>", {"class": "hp-background"}));
+            this.div.children(".hp-background").append($("<div>", {"class": "hp-bar"}));
         }
-        this.div.children(".hp-bar").width(HP_BAR_WIDTH * this.hp / SHIP_MAX_HP);
+        this.div.children(".hp-background").children(".hp-bar").width(HP_BAR_WIDTH * this.hp / SHIP_MAX_HP);
     }
 
 };
@@ -108,9 +109,9 @@ function Enemy() {
     this.alive = true;
     this.halfwidth = this.div.width() / 2;
     this.halfheight = this.div.height() / 2;
-    this.x = Math.random() * ($(document).width() - this.halfwidth) + this.halfwidth;
+    this.x = Math.random() * ($(document).width() - this.halfwidth);
     this.y = -50;
-    this.speed = 2;
+    this.speed = Math.random() * 3 + 2;
     this.hp = ENEMY_MAX_HP;
     this.collisiondamage = 10;
 }
@@ -121,9 +122,10 @@ Enemy.prototype.tick = function() {
 
     if (this.hp < ENEMY_MAX_HP) {
         if (this.div.children().length == 0) {
-            this.div.append($("<div>", {"class": "hp-bar"}));
+            this.div.append($("<div>", {"class": "hp-background"}));
+            this.div.children(".hp-background").append($("<div>", {"class": "hp-bar"}));
         }
-        this.div.children(".hp-bar").width(HP_BAR_WIDTH * this.hp / ENEMY_MAX_HP);
+        this.div.children(".hp-background").children(".hp-bar").width(HP_BAR_WIDTH * this.hp / ENEMY_MAX_HP);
     }
 
     if (this.y >= ship.y) {
@@ -182,7 +184,7 @@ Projectile.prototype.tick = function() {
 function Background() {
     this.x = 0;
     this.y = 0;
-    this.scrollspeed = 2;
+    this.scrollspeed = 5;
 }
 
 Background.prototype.tick = function() {
