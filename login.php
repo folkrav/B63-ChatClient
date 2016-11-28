@@ -31,8 +31,8 @@
 			<div class="form-label">Style :</div>
 			<div class="form-input">
 				<select id="styleDropdown">
-					<option value="style1">Style1</option>
-					<option value="style2">Style2</option>
+					<option value="style1">Galaga</option>
+					<option value="style2">CMD</option>
 					<option value="style3">Style3</option>
 				</select>
 			</div>

@@ -40,6 +40,7 @@
 			elseif (isset($_GET["registered"])) {
 				$this->status = "Compte créé avec succès!";
 			}
+
 		}
 
 		private function login() {
