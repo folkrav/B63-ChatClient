@@ -23,6 +23,9 @@ function parseCommand(str) {
             case "list-users":
                 ctx.append($("#chatUserlist").children());
                 break;
+            case "color":
+                changeColors(args[0], args[1]);
+                break;
             default:
                 ctx.append($("<p>").text("Commande invalide. Taper /help pour de l'aide."));
                 break;
@@ -54,5 +57,28 @@ function showHelp() {
         line.appendChild(messageText);
 
         ctx.append(line);
+    }
+}
+
+function changeColors(component, color) {
+    if (!color.match("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")) {
+        ctx.append($("<p>").text("Couleur invalide."));
+    } else if (!component || !color) {
+        ctx.append($("<p>").text("Paramètre invalide."));
+    } else {
+        switch (component) {
+            case "background":
+                $("html").css('background-color', color);
+                break;
+            case "text":
+                $("html").css('color', color);
+                break;
+            case "links":
+                $("a").css('color', color);
+                break;
+            default:
+                ctx.append($("<p>").text("Composante invalide."));
+                break;
+        }
     }
 }
