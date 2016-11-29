@@ -209,7 +209,7 @@ function Projectile(x, y, isEnemy) {
     this.x = x;
     this.y = y;
     this.alive = true;
-    this.speed = isEnemy ? -5 : 5;
+    this.speed = isEnemy ? -4 : 8;
     this.damage = Math.random() * 4 + 1;
     this.isEnemy = isEnemy;
 }
