@@ -6,6 +6,9 @@
 	require_once("partial/header.php");
 ?>
 <script src="js/chat.js"></script>
+<?php
+    require_once("partial/scripts.php");
+?>
 <div id="contents">
     <div id="chatContents">
         <div id="chatRoom"></div>

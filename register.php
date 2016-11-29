@@ -4,8 +4,9 @@
 	$action->execute();
 
 	require_once("partial/header.php");
+	require_once("partial/scripts.php");
 ?>
-	
+
 <div id="contents">
 	<h2>Enregistrez-vous</h1>
 	<form action="register.php" method="post">

@@ -4,6 +4,7 @@
 	$action->execute();
 
 	require_once("partial/header.php");
+	require_once("partial/scripts.php");
 ?>
 <script src="js/login.js"></script>
 <div id="contents">
