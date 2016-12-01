@@ -32,6 +32,7 @@
 			<div class="form-label">Style :</div>
 			<div class="form-input">
 				<select id="styleDropdown">
+					<option value="" disabled selected style="display:none;">Votre choix de style</option>
 					<option value="style1">Galaga</option>
 					<option value="style2">CMD</option>
 					<option value="style3">Style3</option>

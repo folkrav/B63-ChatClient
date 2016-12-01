@@ -50,6 +50,12 @@ function parseCommand(str) {
             case "save-theme":
                 localStorage.setItem("theme2styles", JSON.stringify(cssrules));
                 break;
+            case "disconnect":
+                window.location.href += "?logout=true";
+                break;
+            case "unregister":
+                window.location.href += "?unregister=true";
+                break;
             default:
                 ctx.append($("<p>").text("Commande invalide. Taper /help pour de l'aide.")).scrollTop($(this).height());
                 break;
@@ -62,6 +68,8 @@ function parseCommand(str) {
 function showHelp() {
     commands = {
         "/help": "Afficher ce menu d'aide.",
+        "/disconnect": "Se déconnecter du chat.",
+        "/unregister": "Se désenregistrer.",
         "/list-users": "Afficher la liste des utilisateurs connectés.",
         "/color": "Changer la couleur d'un élément de la page. arg1 : [background, text, links], arg2 : #XXXXXX).",
         "/save-theme": "Enregistrer le thème localement."

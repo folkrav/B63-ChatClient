@@ -5,6 +5,7 @@ $(window).on('load', function () {
         }
     });
 
+    $("#chatMessage").attr("placeholder", "~").focus();
     setTimeout(getMessages, 1000);
 });
 
