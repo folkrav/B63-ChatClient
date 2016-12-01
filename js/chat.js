@@ -76,7 +76,7 @@ function addMessageLine(message) {
     line.appendChild(messageText);
 
     $("#chatRoom").append(line);
-    $("#chatRoom").scrollTop($("chatRoom").height());
+    $("#chatRoom").scrollTop($(this).height());
 }
 
 function showUserlist(users) {
