@@ -17,7 +17,9 @@ $(window).on('load', function () {
         cssrules = JSON.parse(localStorage.getItem("theme2styles"));
         applyTheme();
     }
-    ctx.append($("<p>").text("Bienvenue! Tapez /help pour les commandes.")).scrollTop($(this)[0].scrollHeight);
+
+    ctx.append($("<p>").text("Bienvenue! Tapez /help pour les commandes.")).scrollTop(ctx.scrollHeight);
+    $("#chatMessage").attr("placeholder", "~").focus();
 
     $("#chatMessage").off().keyup(function(e) {
         if((e.keyCode || e.which) == 13) { //Enter keycode
@@ -38,18 +40,18 @@ function parseCommand(str) {
                 showHelp();
                 break;
             case "list-users":
-                ctx.append($("#chatUserlist").children()).scrollTop($(this)[0].scrollHeight);
+                ctx.append($("#chatUserlist").children()).scrollTop(ctx.scrollHeight);
                 break;
             case "color":
                 if (args.length === 2) {
                     changeColors(args[0], args[1]);
                 } else {
-                    ctx.append($("<p>").text("Un argument est invalide.")).scrollTop($(this)[0].scrollHeight);
+                    ctx.append($("<p>").text("Un argument est invalide.")).scrollTop(ctx.scrollHeight);
                 }
                 break;
             case "save-theme":
                 localStorage.setItem("theme2styles", JSON.stringify(cssrules));
-                ctx.append($("<p>").text("Thème enregistré!")).scrollTop($(this)[0].scrollHeight);
+                ctx.append($("<p>").text("Thème enregistré!")).scrollTop(ctx.scrollHeight);
                 break;
             case "disconnect":
                 window.location.href += "?logout=true";
@@ -58,7 +60,7 @@ function parseCommand(str) {
                 window.location.href += "?unregister=true";
                 break;
             default:
-                ctx.append($("<p>").text("Commande invalide. Taper /help pour de l'aide.")).scrollTop($(this)[0].scrollHeight);
+                ctx.append($("<p>").text("Commande invalide. Taper /help pour de l'aide.")).scrollTop(ctx.scrollHeight);
                 break;
         }
     } else {
@@ -92,9 +94,9 @@ function showHelp() {
 
 function changeColors(component, color) {
     if (!color.match("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")) {
-        ctx.append($("<p>").text("Couleur invalide.")).scrollTop($(this)[0].scrollHeight);
+        ctx.append($("<p>").text("Couleur invalide.")).scrollTop(ctx.scrollHeight);
     } else if (!component || !color) {
-        ctx.append($("<p>").text("Paramètre manquant.")).scrollTop($(this)[0].scrollHeight);
+        ctx.append($("<p>").text("Paramètre manquant.")).scrollTop(ctx.scrollHeight);
     } else {
         switch (component) {
             case "background":
@@ -111,7 +113,7 @@ function changeColors(component, color) {
                 cssrules["a"]["color"] = color;
                 break;
             default:
-                ctx.append($("<p>").text("Composante invalide.")).scrollTop($(this)[0].scrollHeight);
+                ctx.append($("<p>").text("Composante invalide.")).scrollTop(ctx.scrollHeight);
                 break;
         }
     }

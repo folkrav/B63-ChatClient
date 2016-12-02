@@ -1,14 +1,50 @@
+var boop = null,
+    focused = true;
+
 $(window).on('load', function () {
-    $("#chatMessage").keyup(function(e) {
+    $("#chatMessage").keydown(function(e) {
         if((e.keyCode || e.which) == 13) { //Enter keycode
+            e.preventDefault();
             sendMessage();
         }
     });
+    boop = new Audio('audio/served.mp3');
 
-    $("#chatMessage").attr("placeholder", "~").focus();
     setTimeout(getMessages, 1000);
 });
 
+// Notifications
+$(window).on("blur", function () { focused = false;});
+$(window).on("focus", function () { focused = true;});
+document.addEventListener('DOMContentLoaded', function () {
+    if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+    }
+});
+
+function notifyMe(message) {
+    if (!Notification) {
+        alert('Notifications non-disponibles dans ce navigateur.');
+        return;
+    }
+
+    if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+    } else {
+        var notification = new Notification(message["nomUsager"], {
+            icon: 'images/notification.png',
+            body: message["message"],
+        });
+
+        notification.onclick = function () {
+            window.focus();
+        };
+
+        boop.play();
+    }
+}
+
+// Messages
 function sendMessage() {
     var text = document.getElementById("chatMessage").value;
     if (text.length > 0) {
@@ -56,6 +92,9 @@ function getUserlist(key) {
 function showMessages(messages) {
     for (var i = messages.length - 1; i >= 0; i--) {
         addMessageLine(messages[i]);
+        if (!focused && i === 0) {
+            notifyMe(messages[i]);
+        }
     }
 }
 
@@ -76,8 +115,7 @@ function addMessageLine(message) {
     line.appendChild(name);
     line.appendChild(messageText);
 
-    $("#chatRoom").append(line);
-    $("#chatRoom").scrollTop($(this).height());
+    $("#chatRoom").append(line).scrollTop($("#chatRoom")[0].scrollHeight);
 }
 
 function showUserlist(users) {
