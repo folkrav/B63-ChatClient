@@ -97,7 +97,6 @@ function checkMovement() {
         }
         if (ctrlPushed && !ball.inGame) { // launch ball
             ball.inGame = true;
-            console.log(ball.inGame);
         }
     }
 
@@ -109,8 +108,15 @@ function collisionDetection() {
             ball.x - ball.radius < bricks[i].x + bricks[i].halfWidth &&
             ball.y + ball.radius > bricks[i].y - bricks[i].halfHeight &&
             ball.y - ball.radius < bricks[i].y + bricks[i].halfHeight) {
+            if (ball.y <= bricks[i].y - bricks[i].halfHeight || //below or above
+                ball.y >= bricks[i].y + bricks[i].halfHeight) {
+                ball.dy = -ball.dy;
+            } else if (ball.x < bricks[i].x ||
+                       ball.x > bricks[i].x) { // sides
+                ball.dx = -ball.dx;
+            }
             bricks[i].hp--;
-            ball.dy = -ball.dy;
+
         }
     }
 
